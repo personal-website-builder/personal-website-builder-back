@@ -1,0 +1,8 @@
+{
+    "name": {
+        "alreadyExist": "User with name {name} already exists"
+    },
+    "email": {
+        "alreadyExist": "User with email {email} already exists"
+    }
+}

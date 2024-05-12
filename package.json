@@ -31,6 +31,7 @@
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.5",
     "joi": "^17.13.1",
+    "nestjs-i18n": "^10.4.5",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },
@@ -77,6 +78,6 @@
     "testEnvironment": "node"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "node_modules/.bin/ts-node prisma/seed.ts"
   }
 }
