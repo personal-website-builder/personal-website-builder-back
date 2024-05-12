@@ -5,8 +5,6 @@ const envFile =
   process.env.NODE_ENV === 'test' ? '.env.test' : '.env.development';
 config({ path: envFile, override: true });
 
-console.log('DATABASE_URL', process.env.DATABASE_URL);
-
 interface EnvVars {
   PORT: number;
   DATABASE_URL: string;
@@ -35,6 +33,5 @@ export const envs = {
   port: envVars.PORT,
   databaseUrl: envVars.DATABASE_URL,
   jwtSecret: envVars.JWT_SECRET,
+  nodeEnv: process.env.NODE_ENV,
 };
-
-console.log('envs', envs);

@@ -21,6 +21,7 @@
     "migrate:test": "node_modules/.bin/dotenv -e .env.test -- npx prisma migrate reset --force"
   },
   "dependencies": {
+    "@colors/colors": "^1.6.0",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.2",
     "@nestjs/core": "^10.0.0",
@@ -36,7 +37,8 @@
     "nestjs-i18n": "^10.4.5",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "winston": "^3.13.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.3.2",
