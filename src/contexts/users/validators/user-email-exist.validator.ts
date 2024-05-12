@@ -5,7 +5,7 @@ import {
   ValidatorConstraintInterface,
 } from 'class-validator';
 import { I18nService } from 'nestjs-i18n';
-import { UsersService } from 'src/contexts/users/users.service';
+import { UsersService } from '../../../contexts/users/users.service';
 
 @ValidatorConstraint()
 @Injectable()

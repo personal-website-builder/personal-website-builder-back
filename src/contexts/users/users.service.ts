@@ -3,9 +3,11 @@ import { User } from '@prisma/client';
 import { PrismaRepository } from '../shared/services/prisma.repository';
 
 @Injectable()
-export class UsersService extends PrismaRepository {
+export class UsersService {
+  constructor(private readonly prismaRepository: PrismaRepository) {}
+
   findOneByName(name: string): Promise<User | undefined> {
-    return this.user.findFirst({
+    return this.prismaRepository.user.findFirst({
       where: {
         name: name,
       },
@@ -13,7 +15,7 @@ export class UsersService extends PrismaRepository {
   }
 
   async findOneByEmail(email: string): Promise<User | undefined> {
-    return this.user.findUnique({
+    return this.prismaRepository.user.findUnique({
       where: {
         email: email,
       },
@@ -25,7 +27,7 @@ export class UsersService extends PrismaRepository {
     name: string,
     password: string,
   ): Promise<User | undefined> {
-    return this.user.create({
+    return this.prismaRepository.user.create({
       data: {
         email: email,
         password: password,

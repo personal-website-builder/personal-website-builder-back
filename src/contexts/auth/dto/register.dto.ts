@@ -1,6 +1,6 @@
 import { IsEmail, IsString, Validate } from 'class-validator';
-import { UserEmailAlreadyExistValidator } from 'src/contexts/users/validators/user-email-exist.validator';
-import { UserNameAlreadyExistValidator } from 'src/contexts/users/validators/user-name-exist.validator';
+import { UserNameAlreadyExistValidator } from '../../../contexts/users/validators/user-name-exist.validator';
+import { UserEmailAlreadyExistValidator } from '../../../contexts/users/validators/user-email-exist.validator';
 
 export class RegisterDto {
   @IsEmail()

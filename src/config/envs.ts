@@ -1,9 +1,15 @@
-import 'dotenv/config';
+import { config } from 'dotenv';
 import * as joi from 'joi';
+
+const envFile =
+  process.env.NODE_ENV === 'test' ? '.env.test' : '.env.development';
+config({ path: envFile, override: true });
+
+console.log('DATABASE_URL', process.env.DATABASE_URL);
 
 interface EnvVars {
   PORT: number;
-  DATABASE_URL: number;
+  DATABASE_URL: string;
   JWT_SECRET: string;
 }
 
@@ -30,3 +36,5 @@ export const envs = {
   databaseUrl: envVars.DATABASE_URL,
   jwtSecret: envVars.JWT_SECRET,
 };
+
+console.log('envs', envs);
