@@ -7,6 +7,7 @@ import {
   PrismaHealthIndicator,
 } from '@nestjs/terminus';
 import { PrismaClient } from '@prisma/client';
+import { Public } from '../shared/decorators/public.decorator';
 
 @Controller()
 export class HealthController {
@@ -17,8 +18,9 @@ export class HealthController {
     private readonly memory: MemoryHealthIndicator,
   ) {}
 
+  @Public()
   @Get()
-  checkApp() {
+  isAlive() {
     return 'I am alive!';
   }
 

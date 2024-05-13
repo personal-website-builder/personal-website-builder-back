@@ -4,9 +4,27 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
+  async refresh(userId: string) {
+    const user = await this.usersService.findOneById(userId);
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+    const { password: _, ...result } = user;
+    const jwtSecret = await this.jwtService.sign({ user: result });
+    const jwtRefresh = this.jwtService.sign(
+      { user: result },
+      { expiresIn: '7d' },
+    );
+    return {
+      accessToken: jwtSecret,
+      refreshToken: jwtRefresh,
+      user: result,
+    };
+  }
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
