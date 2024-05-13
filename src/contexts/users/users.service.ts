@@ -6,7 +6,7 @@ import { PrismaRepository } from '../shared/services/prisma.repository';
 export class UsersService {
   constructor(private readonly prismaRepository: PrismaRepository) {}
 
-  findOneById(userId: string) {
+  async findOneById(userId: string) {
     return this.prismaRepository.user.findFirst({
       where: {
         id: userId,
@@ -14,7 +14,7 @@ export class UsersService {
     });
   }
 
-  findOneByName(name: string): Promise<User | undefined> {
+  async findOneByName(name: string): Promise<User | undefined> {
     return this.prismaRepository.user.findFirst({
       where: {
         name: name,
@@ -40,6 +40,17 @@ export class UsersService {
         email: email,
         password: password,
         name: name,
+      },
+    });
+  }
+
+  async updateRefreshToken(id: string, jwtRefresh: string) {
+    return this.prismaRepository.user.update({
+      where: {
+        id: id,
+      },
+      data: {
+        refreshToken: jwtRefresh,
       },
     });
   }

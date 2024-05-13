@@ -1,14 +1,14 @@
 import { config } from 'dotenv';
 import * as joi from 'joi';
 
-const envFile =
-  process.env.NODE_ENV === 'test' ? '.env.test' : '.env.development';
+const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 config({ path: envFile, override: true });
 
 interface EnvVars {
   PORT: number;
   DATABASE_URL: string;
   JWT_SECRET: string;
+  JWT_REFRESH_SECRET: string;
 }
 
 const envsSchema = joi
@@ -16,6 +16,7 @@ const envsSchema = joi
     PORT: joi.number().required(),
     DATABASE_URL: joi.string().required(),
     JWT_SECRET: joi.string().required(),
+    JWT_REFRESH_SECRET: joi.string().required(),
   })
   .unknown(true);
 
@@ -33,5 +34,6 @@ export const envs = {
   port: envVars.PORT,
   databaseUrl: envVars.DATABASE_URL,
   jwtSecret: envVars.JWT_SECRET,
+  jwtRefreshSecret: envVars.JWT_SECRET,
   nodeEnv: process.env.NODE_ENV,
 };

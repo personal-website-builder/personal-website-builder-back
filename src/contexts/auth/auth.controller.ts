@@ -12,22 +12,18 @@ export class AuthController {
   @Public()
   @Post('login')
   signIn(@Body() loginDto: LoginDto) {
-    console.log(loginDto);
     return this.authService.signIn(loginDto);
   }
 
   @Public()
   @Post('register')
   register(@Body() registerDto: RegisterDto) {
-    return registerDto;
     return this.authService.register(registerDto);
   }
 
   @Post('refresh')
   refresh(@Req() req: Request) {
-    const accessToken = req.headers.authorization.split(' ')[1];
-    console.log(accessToken);
     const user = req['user'];
-    return this.authService.refresh(user);
+    return this.authService.refresh(user.id);
   }
 }
