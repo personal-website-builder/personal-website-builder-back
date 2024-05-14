@@ -3,15 +3,14 @@ import { AppModule } from './app.module';
 import { envs } from './config/envs';
 import { ValidationPipe } from '@nestjs/common';
 import { useContainer } from 'class-validator';
-import { AppLoggerService } from './contexts/shared/services/app-logger.service';
+import { AppLogger } from './contexts/shared/loggers/app-logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: new AppLoggerService(),
+    logger: new AppLogger('Nest'),
   });
 
-  const logger = app.get<AppLoggerService>(AppLoggerService);
-  logger.setContext('Main');
+  const logger = new AppLogger('Main');
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 

@@ -1,14 +1,14 @@
-import { Injectable, LoggerService } from '@nestjs/common';
-import { Logger } from 'winston';
-import * as winston from 'winston';
 import '@colors/colors';
+import { ConsoleLogger, Injectable } from '@nestjs/common';
+import * as winston from 'winston';
+import { Logger } from 'winston';
 
 @Injectable()
-export class AppLoggerService implements LoggerService {
+export class AppLogger extends ConsoleLogger {
   private winston: Logger;
-  private context: string = AppLoggerService.name;
 
-  constructor() {
+  constructor(context?: string) {
+    super(context);
     this.winston = winston.createLogger({
       format: winston.format.combine(
         winston.format.timestamp(),
@@ -44,10 +44,6 @@ export class AppLoggerService implements LoggerService {
         }),
       ],
     });
-  }
-
-  setContext(context: string) {
-    this.context = context;
   }
 
   /**

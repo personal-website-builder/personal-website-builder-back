@@ -9,9 +9,12 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { envs } from '../../../config/envs';
+import { AppLogger } from 'src/contexts/shared/loggers/app-logger.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  private logger = new AppLogger(AuthGuard.name);
+
   constructor(
     private readonly jwtService: JwtService,
     private readonly reflector: Reflector,
@@ -22,6 +25,9 @@ export class AuthGuard implements CanActivate {
       context.getHandler(),
       context.getClass(),
     ]);
+
+    this.logger.log(`isPublic: ${isPublic}`);
+
     if (isPublic) {
       return true;
     }
@@ -29,6 +35,7 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
     if (!token) {
+      this.logger.log('Token not found');
       throw new UnauthorizedException();
     }
     try {
@@ -37,6 +44,7 @@ export class AuthGuard implements CanActivate {
       });
       request['user'] = payload;
     } catch {
+      this.logger.log('Invalid token');
       throw new UnauthorizedException();
     }
     return true;
