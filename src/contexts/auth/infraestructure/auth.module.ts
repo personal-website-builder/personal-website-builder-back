@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from '../../users/infraestructure/users.module';
 import { JwtModule } from '@nestjs/jwt';
-import { envs } from '../../config/envs';
+import { envs } from '../../../config/envs';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './auth.guard';
+import { RefreshHandler } from '../application/refresh/refresh.handler';
+import { CqrsModule } from '@nestjs/cqrs';
+import { LoginHandler } from '../application/login/login.handler';
+import { RegisterHandler } from '../application/register/register.handler';
 
 @Module({
   imports: [
@@ -15,6 +18,7 @@ import { AuthGuard } from './guards/auth.guard';
       signOptions: { expiresIn: '10min' },
     }),
     UsersModule,
+    CqrsModule,
   ],
   controllers: [AuthController],
   providers: [
@@ -22,7 +26,9 @@ import { AuthGuard } from './guards/auth.guard';
       provide: APP_GUARD,
       useClass: AuthGuard,
     },
-    AuthService,
+    RefreshHandler,
+    LoginHandler,
+    RegisterHandler,
   ],
 })
 export class AuthModule {}

@@ -7,7 +7,7 @@ import {
   PrismaHealthIndicator,
 } from '@nestjs/terminus';
 import { PrismaClient } from '@prisma/client';
-import { Public } from '../shared/decorators/public.decorator';
+import { Public } from '../shared/infraestructure/decorators/public.decorator';
 
 @Controller()
 export class HealthController {

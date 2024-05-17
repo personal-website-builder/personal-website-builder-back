@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { envs } from './config/envs';
 import { ValidationPipe } from '@nestjs/common';
 import { useContainer } from 'class-validator';
-import { AppLogger } from './contexts/shared/loggers/app-logger.service';
+import { AppLogger } from './contexts/shared/infraestructure/loggers/app-logger.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { HeaderResolver, I18nModule } from 'nestjs-i18n';
 import * as path from 'path';
-import { AuthModule } from './contexts/auth/auth.module';
+import { AuthModule } from './contexts/auth/infraestructure/auth.module';
 import { HealthModule } from './contexts/health/health.module';
-import { SharedModule } from './contexts/shared/shared.module';
-import { UsersModule } from './contexts/users/users.module';
+import { SharedModule } from './contexts/shared/infraestructure/shared.module';
+import { UsersModule } from './contexts/users/infraestructure/users.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
