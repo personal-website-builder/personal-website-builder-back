@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { HeaderResolver, I18nModule } from 'nestjs-i18n';
 import * as path from 'path';
-import { AuthModule } from './contexts/auth/infraestructure/auth.module';
+import { join } from 'path';
+import { AuthModule } from './contexts/auth/auth.module';
 import { HealthModule } from './contexts/health/health.module';
 import { SharedModule } from './contexts/shared/infraestructure/shared.module';
-import { UsersModule } from './contexts/users/infraestructure/users.module';
+import { UsersModule } from './contexts/users/users.module';
 import { ConfigModule } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -19,6 +21,14 @@ import { ConfigModule } from '@nestjs/config';
         watch: true,
       },
       resolvers: [new HeaderResolver(['x-lang'])],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      renderPath: '/public',
+      serveRoot: '/public',
+      serveStaticOptions: {
+        index: false,
+      },
     }),
     AuthModule,
     HealthModule,

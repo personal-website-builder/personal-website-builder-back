@@ -1,6 +1,6 @@
 import { IsEmail, IsString, Validate } from 'class-validator';
-import { UserEmailAlreadyExistValidator } from '../../../users/infraestructure/validators/user-email-exist.validator';
-import { UserNameAlreadyExistValidator } from '../../../users/infraestructure/validators/user-name-exist.validator';
+import { UserEmailAlreadyExistValidator } from '../../../users/infraestructure/validators/user-email-already-exist.validator';
+import { UserNameAlreadyExistValidator } from '../../../users/infraestructure/validators/user-name-already-exist.validator';
 
 export class RegisterCommand {
   @IsEmail()

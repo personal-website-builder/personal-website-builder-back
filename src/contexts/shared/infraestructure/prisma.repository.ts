@@ -4,6 +4,7 @@ import {
   OnApplicationBootstrap,
 } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
+import { envs } from '../../../config/envs';
 
 @Injectable()
 export class PrismaRepository
@@ -12,6 +13,7 @@ export class PrismaRepository
 {
   constructor() {
     super();
+    console.log(envs);
   }
 
   onApplicationBootstrap() {

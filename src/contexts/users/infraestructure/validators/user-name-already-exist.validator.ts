@@ -24,7 +24,6 @@ export class UserNameAlreadyExistValidator
   async validate(name: string, args: ValidationArguments): Promise<boolean> {
     const { id } = args.object as { id: string };
     const user = await this.userRepository.findOneByName(name);
-    console.log(user);
     if (id) {
       return user && user.id === id;
     }

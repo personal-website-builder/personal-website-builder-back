@@ -6,7 +6,10 @@ import * as bcrypt from 'bcrypt';
 import { AccessTokenPayload } from '../../domain/access-token-payload';
 import { envs } from '../../../../config/envs';
 import { JwtService } from '@nestjs/jwt';
-import { UserRepository, UserRepositoryToken } from '../../../users/domain/user.repository';
+import {
+  UserRepository,
+  UserRepositoryToken,
+} from '../../../users/domain/user.repository';
 
 @CommandHandler(RegisterCommand)
 export class RegisterHandler implements ICommandHandler<RegisterCommand> {
@@ -43,7 +46,9 @@ export class RegisterHandler implements ICommandHandler<RegisterCommand> {
 
     await this.userRepository.updateRefreshToken(user.id, jwtRefresh);
 
-    const authUserRegisteredEvent = new AuthUserRegisteredEvent(user.id, registerCommand);
+    const authUserRegisteredEvent = new AuthUserRegisteredEvent(
+      registerCommand,
+    );
     this.eventBus.publish(authUserRegisteredEvent);
 
     return {

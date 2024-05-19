@@ -4,5 +4,11 @@
     },
     "email": {
         "alreadyExist": "User with email {email} already exists"
+    },
+    "id": {
+        "notFound": "User with id {id} not found"
+    },
+    "detail": {
+        "notFound": "User with id {id} detail not found"
     }
 }

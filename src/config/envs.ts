@@ -1,5 +1,7 @@
-import { config } from 'dotenv';
 import * as joi from 'joi';
+import { config } from 'dotenv';
+
+console.log('NODE_ENV', process.env.NODE_ENV);
 
 const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 config({ path: envFile, override: true });

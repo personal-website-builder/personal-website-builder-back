@@ -1,5 +1,10 @@
 import { IS_PUBLIC_KEY } from '../../shared/infraestructure/decorators/public.decorator';
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
@@ -27,17 +32,20 @@ export class AuthGuard implements CanActivate {
       return true;
     }
 
-    const request = context.switchToHttp().getRequest();
+    const request: Request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
     if (!token) {
       this.logger.log('Token not found');
       throw new UnauthorizedException();
     }
     try {
-      const payload = await this.jwtService.verifyAsync(token, {
-        secret: envs.jwtSecret,
-      });
-      request['user'] = payload;
+      if (request.path.includes('auth/refresh')) {
+        request['user'] = await this.jwtService.decode(token);
+      } else {
+        request['user'] = await this.jwtService.verifyAsync(token, {
+          secret: envs.jwtSecret,
+        });
+      }
     } catch {
       this.logger.log('Invalid token');
       throw new UnauthorizedException();

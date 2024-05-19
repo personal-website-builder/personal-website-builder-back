@@ -39,8 +39,8 @@ model UserDetail {
   province  String
   address   String
   about     String    @db.Text
-  avatar    String
-  cover     String
+  avatar    String?
+  cover     String?
   bio       String
   email     String
   createdAt DateTime  @default(now())
