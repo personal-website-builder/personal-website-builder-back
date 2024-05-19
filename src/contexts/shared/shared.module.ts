@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { PrismaRepository } from './prisma.repository';
-import { AllSaga } from './sagas/all.saga';
+import { PrismaRepository } from './infraestructure/prisma.repository';
+import { AllSaga } from './infraestructure/sagas/all.saga';
 
 @Module({
   providers: [PrismaRepository, AllSaga],

@@ -4,7 +4,7 @@ import * as path from 'path';
 import { join } from 'path';
 import { AuthModule } from './contexts/auth/auth.module';
 import { HealthModule } from './contexts/health/health.module';
-import { SharedModule } from './contexts/shared/infraestructure/shared.module';
+import { SharedModule } from './contexts/shared/shared.module';
 import { UsersModule } from './contexts/users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
