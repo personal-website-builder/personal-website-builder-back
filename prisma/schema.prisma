@@ -32,17 +32,17 @@ model UserDetail {
   user      User      @relation(fields: [userId], references: [id])
   birthday  DateTime
   phone     String    @unique
+  email     String    @unique
   firstName String
   lastName  String
   city      String
   country   String
   province  String
   address   String
-  about     String    @db.Text
   avatar    String?
   cover     String?
   bio       String
-  email     String
+  about     String    @db.Text
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
@@ -52,11 +52,12 @@ model Profile {
   id        String    @id @default(uuid())
   userId    String
   user      User      @relation(fields: [userId], references: [id])
+  email     String
+  phone     String
   avatar    String
   cover     String
   bio       String
-  email     String
-  phone     String
+  about     String    @db.Text
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
