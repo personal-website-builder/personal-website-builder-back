@@ -54,7 +54,7 @@ export class UsersController {
       storage: diskStorage({
         destination: (req, file, callback) => {
           const userId = req.params.id;
-          const uploadPath = `./src/public/images/${userId}`;
+          const uploadPath = `./src/public/${userId}/images/detail`;
 
           // Crear el directorio si no existe
           if (!existsSync(uploadPath)) {
@@ -110,7 +110,7 @@ export class UsersController {
       storage: diskStorage({
         destination: (req, file, callback) => {
           const userId = req.params.id;
-          const uploadPath = `./src/public/images/${userId}`;
+          const uploadPath = `./src/public/${userId}/images/detail`;
 
           // Crear el directorio si no existe
           if (!existsSync(uploadPath)) {
