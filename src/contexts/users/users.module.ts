@@ -11,10 +11,12 @@ import { UserIdExistPipe } from './infraestructure/pipes/user-id-exist.pipe';
 import { SaveUserDetailAvatarHandler } from './application/save-user-detail-avatar/save-user-detail-avatar.handler';
 import { SaveUserDetailCoverHandler } from './application/save-user-detail-cover/save-user-detail-cover.handler';
 import { FindUserDetailsHandler } from './application/find-user-details/find-user-details.handler';
+import { UserIdExistValidator } from './infraestructure/validators/user-id-exist.validator';
 
 const sharedValidators = [
   UserEmailAlreadyExistValidator,
   UserNameAlreadyExistValidator,
+  UserIdExistValidator,
 ];
 
 const sharePipes = [UserIdExistPipe];

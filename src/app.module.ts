@@ -8,6 +8,7 @@ import { SharedModule } from './contexts/shared/shared.module';
 import { UsersModule } from './contexts/users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { ProfilesModule } from './contexts/profiles/profiles.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     HealthModule,
     UsersModule,
     SharedModule,
+    ProfilesModule,
   ],
   controllers: [],
   providers: [],

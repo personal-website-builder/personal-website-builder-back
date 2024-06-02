@@ -97,6 +97,8 @@ export class UsersController {
     id: string,
     @UploadedFile() avatar: Express.Multer.File,
   ) {
+    console.log(id);
+    console.log(avatar);
     const filePath = avatar.path.slice(avatar.path.indexOf('/public'));
     const command = new SaveUserDetailAvatarCommand();
     command.userId = id;
