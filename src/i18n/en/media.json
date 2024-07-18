@@ -1,0 +1,10 @@
+{
+    "message": {
+
+    },
+    "errors": {
+        "idNotFound": "Media with id {id} not found",
+        "removeOneError": "Error while removing media"
+    }
+    
+}
